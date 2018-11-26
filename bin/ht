@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+const moment = require("moment");
+var colors = require('colors');
+var program = require('commander')
+var Lib = require('../lib')
+
+// set theme
+colors.setTheme({
+	silly: 'rainbow',
+	input: 'grey',
+	verbose: 'cyan',
+	prompt: 'grey',
+	info: 'green',
+	data: 'grey',
+	help: 'cyan',
+	warn: 'yellow',
+	debug: 'blue',
+	error: 'red'
+});
+
+
+program
+	.version('1.2.0')
+	.usage('[options] <file ...>')
+	.option('-d, --dir <dir>', '模板输出的路径','portal/public/tpls/admin')
+	.option('-b, --basename <name>', '指定文件基础名称: 例如  test  -> test.html test.add.html')
+	.option('-t --template <size>', '输出的模板类型(nghtml|api)', /^(nghtml|api)$/i, 'nghtml')
+	.parse(process.argv);
+
+console.log(' 模板输出路径: %j'.info, program.dir);
+console.log(' 模板基础名称: %j'.info, program.basename);
+console.log(' 模板类型(nghtml|model|api): %j'.info, program.template);
+console.log(' args: %j'.info, program.args);
+
+
+if (!program.dir) {
+	console.log('没有指定路径!,输入 ht -h 获取帮助'.error);
+	process.exit(1);
+}
+
+if (!program.template) {
+	console.log('没有指定模板类型!,输入 ht -h 获取帮助'.error);
+	process.exit(1);
+}
+
+if (!program.basename) {
+	console.log('没有指定基础文件名称!,输入 ht -h 获取帮助'.error);
+	process.exit(1);
+}
+// 后台模板
+if(program.dir&&program.template=="nghtml" && program.basename) {
+	Lib.writeAngularHtml(program.dir,program.basename)
+}
+// API 相关
+if(program.template=="api" && program.basename) {
+	Lib.writeModelApiService(program.basename)
+}
+
+
