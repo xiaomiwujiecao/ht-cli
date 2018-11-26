@@ -1,0 +1,25 @@
+{
+  "name": "ht-cli",
+  "version": "1.0.0",
+  "description": "恒泰云常用脚本工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaomiwujiecao/ht-cli.git"
+  },
+  "keywords": [
+    "ht",
+    "cloud",
+    "command",
+    "tools"
+  ],
+  "author": "reserse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaomiwujiecao/ht-cli/issues"
+  },
+  "homepage": "https://github.com/xiaomiwujiecao/ht-cli#readme"
+}
