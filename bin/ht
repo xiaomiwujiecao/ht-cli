@@ -22,9 +22,10 @@ colors.setTheme({
 program
 	.version('1.2.0')
 	.usage('[options] <file ...>')
-	.option('-d, --dir <dir>', '模板输出的路径','portal/public/tpls/admin')
+	.option('-d, --dir <dir>', '后台模板输出的路径','portal/public/tpls/admin')
+	.option('-w, --wxdir <dir>', '微信前端模板dir','wx/views/')
 	.option('-b, --basename <name>', '指定文件基础名称: 例如  test  -> test.html test.add.html')
-	.option('-t --template <size>', '输出的模板类型(nghtml|api)', /^(nghtml|api)$/i, 'nghtml')
+	.option('-t --template <size>', '输出的模板类型(nghtml|api|wx)', /^(nghtml|api|wx)$/i, 'nghtml')
 	.parse(process.argv);
 
 console.log(' 模板输出路径: %j'.info, program.dir);
@@ -32,28 +33,32 @@ console.log(' 模板基础名称: %j'.info, program.basename);
 console.log(' 模板类型(nghtml|model|api): %j'.info, program.template);
 console.log(' args: %j'.info, program.args);
 
-
+// dir name
 if (!program.dir) {
 	console.log('没有指定路径!,输入 ht -h 获取帮助'.error);
 	process.exit(1);
 }
-
+// template name
 if (!program.template) {
 	console.log('没有指定模板类型!,输入 ht -h 获取帮助'.error);
 	process.exit(1);
 }
-
+// base name
 if (!program.basename) {
 	console.log('没有指定基础文件名称!,输入 ht -h 获取帮助'.error);
 	process.exit(1);
 }
-// 后台模板
+// ng html template
 if(program.dir&&program.template=="nghtml" && program.basename) {
 	Lib.writeAngularHtml(program.dir,program.basename)
 }
-// API 相关
+// model service api template
 if(program.template=="api" && program.basename) {
 	Lib.writeModelApiService(program.basename)
 }
 
+// model service api template
+if(program.template=="wx" && program.basename) {
+	Lib.writeWxHtml(program.wxdir,program.basename)
+}
 

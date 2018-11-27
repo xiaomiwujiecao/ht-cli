@@ -450,8 +450,8 @@ module.exports = {
                 }
             })
 				`,
-				CONTROLLER:
-					`
+			CONTROLLER:
+				`
 							// 优惠券管理
 		    .controller('${v.capitalize(name)}Ctrl', ['$scope', '$uibModal', '$log', '${v.capitalize(name)}Service', function ($scope, $uibModal, $log, ${v.capitalize(name)}Service) {
 		        $scope.data = {
@@ -726,8 +726,8 @@ module.exports = {
 		            }
 		        }])
 					`,
-				SERVICES:
-					`
+			SERVICES:
+				`
 					// ${name} Service
 		    .factory('${v.capitalize(name)}Service', ['$http', function ($http) {
 		
@@ -1143,6 +1143,43 @@ module.exports = {
 			};
 			module.exports = ${name}Route
 		`
+		}
+	},
+	wxHtml(name) {
+		return {
+			EJS:
+				`
+				<%- include('../header.html') %>
+<style>
+</style>
+<div class="page-group">
+    <div class="page page-current" id="${v.camelCase(name)}">
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back "><span
+                        class="icon icon-left color-icon-common"></span></a>
+
+            <h1 class="title color-icon-common"><%= title %></h1>
+        </header>
+
+        <%- include('../bar-tab.html') %>
+
+        <div class="content ">
+             
+					<div class="content-block">
+			      
+			    </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer.html') %>
+<script>
+$(document).on("pageInit", "#${v.camelCase(name)}", function(e, id, page) {
+	var content = $(page).find('.content')
+});
+</script>
+
+				`
 		}
 	}
 
