@@ -1,6 +1,6 @@
 {
   "name": "hty-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "恒泰云常用脚本工具",
   "main": "index.js",
   "scripts": {
