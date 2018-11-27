@@ -1,4 +1,4 @@
-# ht-cli
+# hty-cli
 恒泰云常用命令行工具
 
 
@@ -10,3 +10,4 @@ npm i hty-cli -g
 
 ht -h / --help
 
+## 本项目仅适配自有项目
